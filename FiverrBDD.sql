@@ -13,3 +13,11 @@ CREATE TABLE `Profile` (
   `technos` varchar(255) NOT NULL,
   PRIMARY KEY(`id`)
 );
+
+CREATE TABLE `Comments` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `author` varchar(255) NOT NULL,
+  `datetime` DATETIME NOT NULL,
+  `content` TEXT NULL,
+  PRIMARY KEY(`id`)
+);
