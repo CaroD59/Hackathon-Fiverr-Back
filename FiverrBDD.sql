@@ -21,3 +21,21 @@ CREATE TABLE `Comments` (
   `content` TEXT NULL,
   PRIMARY KEY(`id`)
 );
+
+CREATE TABLE IF NOT EXISTS `fiverr`.`profile_has_comments` (
+  `profile_id` INT NOT NULL,
+  `comments_id` INT NOT NULL,
+  PRIMARY KEY (`profile_id`, `comments_id`),
+  INDEX `fk_profile_has_comments_comments1_idx` (`comments_id` ASC) VISIBLE,
+  INDEX `fk_profile_has_comments_profile1_idx` (`profile_id` ASC) VISIBLE,
+  CONSTRAINT `fk_profile_has_comments_profile1`
+    FOREIGN KEY (`profile_id`)
+    REFERENCES `fiverr`.`profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_profile_has_comments_comments1`
+    FOREIGN KEY (`comments_id`)
+    REFERENCES `fiverr`.`comments` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
