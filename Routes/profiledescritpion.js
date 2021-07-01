@@ -13,10 +13,10 @@ router.get('/:idprofile', async (req, res) => {
 });
 
 router.post('/:idprofile', async (req, res) => {
-  const { author, content } = req.params;
-  const sql =
-    'INSERT INTO Comments(author, datetime, content) VALUES(?,?,?) WHERE id=?';
-  const sqlValues = [author, new Date(), content];
+  const { author, content } = req.body;
+  console.log(req.body);
+  const sql = 'INSERT INTO Comments(author, content) VALUES(?,?)';
+  const sqlValues = [author, content];
   const [results] = await db.query(sql, sqlValues);
   res.status(201).json(results);
 });
